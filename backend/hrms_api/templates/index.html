@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HRMS Lite</title>
+
+    <!-- Bootstrap CDN (as you requested) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary mb-4">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">HRMS Lite</span>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- ===== DASHBOARD ===== -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm dashboard-card">
+        <div class="card-body text-center">
+          <h6>Total Employees</h6>
+          <h3 id="totalEmployees">0</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm dashboard-card">
+        <div class="card-body text-center">
+          <h6>Present Today</h6>
+          <h3 id="presentToday">0</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm dashboard-card">
+        <div class="card-body text-center">
+          <h6>Absent Today</h6>
+          <h3 id="absentToday">0</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== END DASHBOARD ===== -->
+
+  <div class="row">
+    <!-- Employee Form -->
+    <div class="col-md-6">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Add Employee</h5>
+        </div>
+        <div class="card-body">
+          <input class="form-control mb-2" id="emp_id" placeholder="Employee ID">
+          <input class="form-control mb-2" id="name" placeholder="Full Name">
+          <input class="form-control mb-2" id="email" placeholder="Email">
+          <input class="form-control mb-3" id="dept" placeholder="Department">
+          <button class="btn btn-primary w-100" id="addEmp">Add Employee</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance Form -->
+    <div class="col-md-6">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Mark Attendance</h5>
+        </div>
+        <div class="card-body">
+          <input class="form-control mb-2" id="att_emp_id" placeholder="Employee ID">
+          <input class="form-control mb-2" id="date" type="date">
+          <select class="form-select mb-3" id="status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+          </select>
+          <button class="btn btn-success w-100" id="markAtt">Mark Attendance</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Employees List -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Employees</h5>
+          <button class="btn btn-sm btn-outline-secondary" onclick="loadEmployees()">Refresh</button>
+        </div>
+        <div class="card-body">
+          <div id="employeeList">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance List with Filter -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Attendance Records</h5>
+            <input type="date" id="filterDate" class="form-control w-50" onchange="loadAttendance()">
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="attendanceList">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

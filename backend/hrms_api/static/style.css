@@ -1,0 +1,31 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+}
+
+#employeeList div,
+#attendanceList div {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+#employeeList div:last-child,
+#attendanceList div:last-child {
+    border-bottom: none;
+}
+
+.delete-btn {
+    float: right;
+}
