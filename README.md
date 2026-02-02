@@ -1,5 +1,14 @@
 # HRMS Lite
 
+### HOW TO RUN THE PROJECT ###
+## check this link for reference -> https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/ ##
+(Please use the requirements.txt file to setup the venv)
+step1 -> download the zip from the git repo.
+step2 -> extract the contents from the zip
+step3 -> open terminal and go to the directory hrms_main/backend
+step4 -> run django server.
+step5 -> open http://127.0.0.1:8000/ on any web browser to access the web application.
+
 ## Overview
 
 HRMS Lite is a lightweight, web-based Human Resource Management System designed to handle core HR operations such as employee management and daily attendance tracking.  
@@ -15,6 +24,7 @@ This project was built keeping in mind:
 - Deployment readiness  
 
 ---
+
 
 ## Tech Stack
 
