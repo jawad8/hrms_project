@@ -1,5 +1,7 @@
 # PeopleOps HRMS
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jawad8/hrms_project/tree/codex/peopleops-hrms)
+
 PeopleOps is a recruiter-ready, full-stack human resource management platform. It turns workforce records into a polished operational dashboard with employee management, attendance, leave, payroll, reports, and a database-grounded AI assistant.
 
 ## Business problem
@@ -92,8 +94,8 @@ npm run build
 
 The included `render.yaml` creates two Render services:
 
-1. `peopleops-api` — Django API
-2. `peopleops-hrms` — Next.js web app
+1. `jawad8-peopleops-api` — Django API
+2. `jawad8-peopleops-hrms` — Next.js web app
 
 In Render, create a **Blueprint** from this repository and provide `GEMINI_API_KEY` when prompted. If Render assigns different service URLs, update `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, and `NEXT_PUBLIC_API_URL`.
 
