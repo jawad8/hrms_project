@@ -1,80 +1,74 @@
 # HRMS Lite
 
-### HOW TO RUN THE PROJECT ###
-## check this link for reference -> https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/ ##
-(Please use the requirements.txt file to setup the venv)
-step1 -> download the zip from the git repo.
-step2 -> extract the contents from the zip
-step3 -> open terminal and go to the directory hrms_main/backend
-step4 -> run django server.
-step5 -> open http://127.0.0.1:8000/ on any web browser to access the web application.
+A compact human-resource management system for employee records, attendance tracking, and daily workforce summaries.
 
-## Overview
+HRMS Lite demonstrates a complete Django workflow: relational data modeling, REST endpoints, validation, an AJAX-driven interface, deployment configuration, and container support.
 
-HRMS Lite is a lightweight, web-based Human Resource Management System designed to handle core HR operations such as employee management and daily attendance tracking.  
+![HRMS Lite dashboard](docs/hrms-dashboard.png)
 
-The system follows a clear separation of concerns between frontend and backend, with a RESTful API layer built using Django REST Framework and a Bootstrap-based user interface served through Django templates. The application is designed to be simple, maintainable, and realistically usable rather than a feature-heavy demo.
+## Features
 
-This project was built keeping in mind:
-- Clean architecture  
-- Readable and modular code  
-- Proper API design  
-- Basic validation and error handling  
-- A professional, user-friendly UI  
-- Deployment readiness  
+- Create, list, and remove employee records
+- Unique employee ID and email validation
+- Record present/absent attendance by date
+- Prevent duplicate attendance entries for the same employee and day
+- Filter attendance records
+- Dashboard totals for employees and daily attendance
+- Django admin and browsable REST API
+- Docker and Gunicorn deployment configuration
 
----
+## Tech stack
 
+- Python and Django
+- Django REST Framework
+- SQLite for local development
+- Bootstrap, jQuery, and AJAX
+- WhiteNoise and Gunicorn
+- Docker
 
-## Tech Stack
+## API
 
-### Backend
-- Python
-- Django
-- Django REST Framework (DRF)
-- SQLite (Development)
-- PostgreSQL (Production-ready)
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET`, `POST` | `/api/employees/` | List or create employees |
+| `GET`, `PUT`, `PATCH`, `DELETE` | `/api/employees/{id}/` | Manage one employee |
+| `GET`, `POST` | `/api/attendance/` | List or create attendance |
+| `GET`, `PUT`, `PATCH`, `DELETE` | `/api/attendance/{id}/` | Manage one attendance record |
 
-### Frontend
-- HTML
-- CSS
-- Bootstrap (via CDN)
-- jQuery
-- AJAX
+## Run locally
 
-### Deployment
-- Backend: Render  
-- Frontend: Served via Django (same domain as backend)
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+copy .env.example .env
+cd backend
+python manage.py migrate
+python manage.py runserver
+```
 
----
+Open `http://127.0.0.1:8000`.
 
-## Features Implemented
+## Run with Docker
 
-### Employee Management
-- Add new employees with:
-  - Employee ID (unique)
-  - Full Name
-  - Email (validated, unique)
-  - Department  
-- View all employees in a structured list  
-- Delete employees with confirmation  
+```bash
+docker build -t hrms-lite .
+docker run --rm -p 8000:8000 --env-file .env hrms-lite
+```
 
-### Attendance Management
-- Mark attendance for an employee with:
-  - Date  
-  - Status (Present / Absent)  
-- View attendance records  
-- Filter attendance by date  
+## Environment variables
 
-### Dashboard (Bonus Feature)
-- Total number of employees  
-- Number of employees Present today  
-- Number of employees Absent today  
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `DJANGO_SECRET_KEY` | Django signing key | development-only fallback |
+| `DEBUG` | Enable debug mode | `True` |
+| `ALLOWED_HOSTS` | Comma-separated allowed hosts | `localhost,127.0.0.1` |
 
-### Backend & API
-- Fully RESTful APIs using Django REST Framework  
-- Proper HTTP status codes  
-- Server-side validation  
-- Duplicate employee prevention  
-- Graceful error handling  
-- Relational database modeling with foreign key constraints  
+## Verification
+
+```bash
+cd backend
+python manage.py test
+python manage.py check
+```
