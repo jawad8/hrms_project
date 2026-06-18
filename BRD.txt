@@ -1,0 +1,219 @@
+I already have a basic HRMS Lite web app. I want you to inspect the existing project structure first, understand the current tech stack, pages, components, APIs, database/models, and then upgrade it into a professional, enterprise-grade HRMS product that can impress recruiters.
+
+Goal:
+Polish this HRMS Lite project into a modern real-world HRMS platform with a premium Next.js frontend, sample HR dataset, dashboards, employee management, attendance, leave, payroll, department analytics, and a Gemini AI-powered HR chatbot that can answer questions from the staff data.
+
+Important:
+
+Do not break existing functionality.
+Reuse existing backend/API logic if present.
+If the current frontend is not Next.js, migrate or rebuild the frontend using Next.js with a clean enterprise UI.
+If there is no proper backend/database, create a simple production-style full-stack setup using Next.js App Router APIs and a local database such as SQLite with Prisma, or adapt to the current stack if already available.
+Keep the project easy to run locally.
+Do not hardcode my Gemini API key. Use environment variable: GEMINI_API_KEY.
+Add .env.example.
+Make the final project look recruiter-ready and enterprise-grade.
+
+Tech requirements:
+
+Frontend: Next.js, React, TypeScript if possible, Tailwind CSS
+UI: modern dashboard layout, sidebar navigation, responsive design, cards, tables, filters, charts, modals, badges, empty states, loading states
+AI: Gemini API integration using server-side API route only
+Database: use existing database if available; otherwise use SQLite + Prisma with seeded sample data
+Charts: use a clean chart library or simple reusable chart components
+Export: CSV export for reports where useful
+Authentication: add demo login or role-based UI if feasible
+
+Design style:
+Create a premium enterprise SaaS feel:
+
+Clean sidebar
+Top navbar with search/profile
+Light/dark mode if possible
+Modern cards with subtle shadows
+Professional HR dashboard
+Mobile responsive
+Smooth but minimal animations
+Color theme suitable for corporate HR/FinTech SaaS
+Do not make it childish or too flashy
+
+Main modules to build or improve:
+
+Dashboard
+Show key HR metrics:
+Total employees
+Active employees
+Employees on leave today
+Monthly absences
+Payroll total
+Average salary
+Department count
+New joiners this month
+Attrition/resignation count if sample data supports it
+Add charts:
+Department-wise headcount
+Attendance trend
+Leave type distribution
+Salary distribution by department
+Monthly hiring trend
+Employee Management
+Create a professional employee directory with:
+Employee ID
+Name
+Email
+Phone
+Department
+Designation
+Manager
+Date of joining
+Employment type
+Status
+Salary
+Location
+Skills
+Features:
+Search
+Filter by department/status/location
+Sort by salary/joining date/name
+View employee profile
+Add/edit employee if feasible
+Employee detail page with attendance, leave, payroll, reporting manager, documents placeholder
+Department Management
+Add department-wise views:
+Department name
+Department head
+Employee count
+Average salary
+Highest salary
+Second highest salary
+Active/on-leave count
+Department employee list
+Attendance Management
+Add attendance records with:
+Date
+Employee
+Status: Present, Absent, Leave, Half Day, Work From Home
+Check-in/check-out time
+Remarks
+Features:
+Monthly attendance summary
+Employee-wise absence count
+Department-wise absence report
+Highlight employees absent more than 5 times in current month
+Leave Management
+Add:
+Leave requests
+Leave type: Annual, Sick, Emergency, Unpaid
+Status: Pending, Approved, Rejected
+From date/to date
+Approver
+Reason
+Features:
+Leave balance mock data
+Pending approvals table
+Leave calendar or list view
+Payroll Management
+Add:
+Salary records
+Basic salary
+Allowances
+Deductions
+Net salary
+Month
+Payment status
+Features:
+Department-wise salary analytics
+Highest and second-highest salary by department
+Payroll summary cards
+Reports
+Create a reports page with ready-made reports:
+Employees absent more than 5 times this month
+Department-wise second-highest salary employees
+New joiners this month
+Employees on leave today
+Department-wise headcount
+Payroll summary
+Attendance summary
+Add export to CSV where possible.
+Gemini AI HR Chatbot
+Add a chatbot named “HR AI Assistant” or “PeopleOps AI”.
+The chatbot should answer questions using the HRMS sample database/data, not generic answers.
+
+Example questions it must support:
+
+Which employees were absent more than 5 times this month?
+Department-wise list the employees whose salary is second highest.
+Who joined this month?
+Which department has the highest payroll cost?
+Show employees currently on leave.
+What is the average salary in the Engineering department?
+List employees under a specific manager.
+Which employees have pending leave approvals?
+Which department has the highest absenteeism?
+Give me a summary of HR performance this month.
+
+Implementation approach for chatbot:
+
+Do not expose raw Gemini key to frontend.
+Create a server-side API route like /api/chat.
+The chatbot should convert the user question into a safe internal query/action.
+For known analytical questions, answer using deterministic code/database queries first.
+Use Gemini to convert the result into a clean human-readable response.
+Do not allow destructive actions through the chatbot.
+Add guardrails: chatbot should only answer HRMS/staff-data-related questions.
+If the user asks unrelated questions, reply politely that it can only help with HRMS data.
+Add sample suggested prompt buttons in the UI.
+Show table-style responses when the answer contains employee lists.
+Show summary text when the answer is analytical.
+Keep chat history in the UI.
+Sample Dataset
+Create realistic seed data:
+At least 40 employees
+5 departments: Engineering, HR, Finance, Sales, Operations
+Multiple designations
+Managers and reporting structure
+Attendance records for at least 2 months
+Leave records
+Payroll records
+Different salaries so second-highest salary queries work
+Some employees absent more than 5 times in current month
+Some employees on leave today
+Some pending leave approvals
+Realistic UAE/India-style names but no real personal data
+Recruiter Demo Polish
+Add a beautiful “Project Overview” section or README explaining:
+What the project is
+Business problem solved
+Features
+Tech stack
+AI chatbot capability
+Sample questions to ask the chatbot
+How to run locally
+Demo login credentials if auth is added
+Environment variable setup for Gemini
+Screenshots placeholder section
+Architecture explanation
+Code Quality
+Create reusable components
+Keep code organized
+Avoid large messy files
+Add proper TypeScript types where possible
+Add error handling
+Add loading states
+Add empty states
+Add comments only where useful
+Remove unused code
+Ensure the app runs without errors
+Final Validation
+After completing changes:
+Run the project locally
+Fix all build/lint/runtime errors
+Verify pages load properly
+Verify sample dataset works
+Verify chatbot answers HRMS questions correctly
+Verify Gemini key is only used server-side
+Verify no secret is committed
+Provide a final summary of what was changed and how to run the project.
+
+Expected final result:
+A modern enterprise-grade HRMS web application with a polished Next.js UI, realistic sample data, HR dashboards, employee/attendance/leave/payroll modules, reports, and a Gemini-powered chatbot that can answer real staff-management questions from the dataset. The app should look strong enough to showcase in my portfolio and impress recruiters.
