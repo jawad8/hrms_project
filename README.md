@@ -2,6 +2,8 @@
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jawad8/hrms_project/tree/codex/peopleops-hrms)
 
+**Live demo:** https://peopleops-hrms.vercel.app
+
 PeopleOps is a recruiter-ready, full-stack human resource management platform. It turns workforce records into a polished operational dashboard with employee management, attendance, leave, payroll, reports, and a database-grounded AI assistant.
 
 ## Business problem
