@@ -92,12 +92,11 @@ npm run build
 
 ## Live demo deployment
 
-The included `render.yaml` creates two Render services:
+The included `render.yaml` creates the Django API service used by the Vercel frontend:
 
 1. `jawad8-peopleops-api` — Django API
-2. `jawad8-peopleops-hrms` — Next.js web app
 
-In Render, create a **Blueprint** from this repository and provide `GEMINI_API_KEY` when prompted. If Render assigns different service URLs, update `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, and `NEXT_PUBLIC_API_URL`.
+Deploy the `frontend/` directory to Vercel and set `NEXT_PUBLIC_API_URL` to the Render API URL. In Render, create a **Blueprint** from this repository and optionally provide `GEMINI_API_KEY`. If either platform assigns a different URL, update `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, and `NEXT_PUBLIC_API_URL`.
 
 ## Screenshots
 
