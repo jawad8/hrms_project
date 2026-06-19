@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { api, money } from "@/lib/api";
+import { api, downloadCsv, money } from "@/lib/api";
 import { BarChart, Loading, PageHeader, StatCard } from "@/components/UI";
 
 type Dashboard = {
@@ -19,8 +19,24 @@ export default function DashboardPage() {
   if (error) return <div className="error-banner">{error}</div>;
   if (!data) return <Loading />;
   const m = data.metrics;
+  const downloadDashboardReport = () => {
+    const report = [
+      { metric: "Generated at", value: new Date().toLocaleString("en-AE") },
+      { metric: "Total employees", value: m.total_employees },
+      { metric: "Active employees", value: m.active_employees },
+      { metric: "Employees on leave today", value: m.on_leave_today },
+      { metric: "Monthly absences", value: m.monthly_absences },
+      { metric: "Monthly payroll", value: money(m.payroll_total) },
+      { metric: "Average salary", value: money(m.average_salary) },
+      { metric: "Department count", value: m.department_count },
+      { metric: "New joiners this month", value: m.new_joiners },
+      { metric: "Attrition count", value: m.attrition_count },
+    ];
+    downloadCsv(`peopleops-dashboard-${new Date().toISOString().slice(0, 10)}`, report);
+  };
+
   return <>
-    <PageHeader eyebrow="THURSDAY · WORKFORCE PULSE" title="Good evening, Jawad" copy="Here’s what’s happening across your organization today." actions={<><button className="btn secondary">Download report</button><button className="btn primary">＋ Add employee</button></>} />
+    <PageHeader eyebrow="THURSDAY · WORKFORCE PULSE" title="Good evening, Jawad" copy="Here’s what’s happening across your organization today." actions={<><button className="btn secondary" onClick={downloadDashboardReport}>Download report</button><button className="btn primary">＋ Add employee</button></>} />
     <section className="stats-grid">
       <StatCard label="Total employees" value={m.total_employees} detail={`${m.new_joiners} joined this month`} icon="♙" />
       <StatCard label="Active workforce" value={m.active_employees} detail={`${Math.round(m.active_employees / m.total_employees * 100)}% of total headcount`} tone="teal" icon="✓" />
