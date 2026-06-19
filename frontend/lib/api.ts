@@ -22,9 +22,14 @@ export const downloadCsv = (name: string, rows: Record<string, unknown>[]) => {
   const headers = Object.keys(rows[0]);
   const csv = [headers.join(","), ...rows.map((row) => headers.map((h) =>
     `"${String(row[h] ?? "").replaceAll('"', '""')}"`).join(","))].join("\n");
+  const blob = new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  link.href = url;
   link.download = `${name}.csv`;
+  link.style.display = "none";
+  document.body.appendChild(link);
   link.click();
-  URL.revokeObjectURL(link.href);
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
